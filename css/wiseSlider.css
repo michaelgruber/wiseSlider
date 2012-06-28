@@ -1,0 +1,52 @@
+div#wiseSlider {
+	position: relative;
+}
+div#wiseSlider div#view {
+	overflow: hidden;
+}
+div#wiseSlider a.arrow, div#wiseSlider a:visited.arrow{
+	width: 30px;
+	height: 53px;
+	background-color:#b8b8b8;
+	position: absolute;
+	top:50%;
+	margin-top: -26px;
+	display: none;
+}
+div#wiseSlider a:hover.arrow, div#wiseSlider a:visited:hover.arrow{
+	background-color:#555;
+}
+div#wiseSlider a.arrow img {
+	position: relative;
+	left: 10px;
+	top: 18px;
+}
+div#wiseSlider a.arrow.left {
+	left:0;
+}
+div#wiseSlider a.arrow.right {
+	right:0;
+}
+div#wiseSlider ul{
+	list-style:none;
+	margin: 0px;
+	padding: 0px;
+	position: relative;
+	left:0px;
+}
+div#wiseSlider ul li{
+	float: left;
+	margin-left: 10px;
+}
+/* Clear Fix */
+.group:before,
+.group:after {
+	content: "";
+	display: table;
+}
+.group:after {
+	clear: both;
+}
+.group {
+	zoom: 1; /* IE6&7 */
+}
