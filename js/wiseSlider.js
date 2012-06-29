@@ -72,7 +72,8 @@
 		var wiseSlider = new WiseSlider(options);
 
 		/* On arrow click check to see if shouldSlide */
-		$("div#wiseSlider a.arrow").bind('click', function(){
+		$("div#wiseSlider a.arrow").bind('click', function(e){
+			e.preventDefault();
 			wiseSlider.shouldMove($(this));
 		});
 
