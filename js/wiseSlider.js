@@ -33,7 +33,6 @@
 		if ((margin = lastSize - elementSize) != 0) {
 			elementSize = lastSize;	
 		}
-		alert(margin)
 
 		// Resize the view
 		view.width((options.columns * elementSize) - margin);
