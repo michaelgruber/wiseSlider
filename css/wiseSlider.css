@@ -38,6 +38,9 @@ div#wiseSlider ul li{
 	float: left;
 	margin-left: 10px;
 }
+div#wiseSlider li:first-child {
+	margin-left: 0;
+}
 /* Clear Fix */
 .group:before,
 .group:after {

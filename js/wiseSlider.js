@@ -8,19 +8,29 @@
 		var leftArrow   = $("div#wiseSlider a.arrow.left"); // Slide left arrow
 		var rightArrow  = $("div#wiseSlider a.arrow.right"); // Slide right arrow
 		var elem        = $("div#wiseSlider div#view ul li:first"); // A single element
+		var last        = $("div#wiseSlider div#view ul li:last"); // Another (non-first) element
 		var count       = $("div#wiseSlider div#view ul li").length; // The number of elements
-		var elementSize = parseInt(elem.width()); // The width of a single element
+		var elementSize = parseInt(elem.width()); // The width of the first element
+		var lastSize    = parseInt(last.width()); // The width of the first element
 		var inProgress  = false; // Semaphore for slide animation
 		var width;
+		var margin;
 
 		elementSize += parseInt(elem.css("margin-left")) + parseInt(elem.css("margin-right"));
+		lastSize += parseInt(last.css("margin-left")) + parseInt(elem.css("margin-right"));
+
+		// Check if the two selected elements differ in size
+		if ((margin = lastSize - elementSize) != 0) {
+			elementSize = lastSize;	
+		}
+		alert(margin)
 
 		// Resize the view
-		view.width(options.columns * elementSize);
+		view.width((options.columns * elementSize) - margin);
 
 		// Resize the slider
 		if (count > (options.columns * options.rows)) {
-			width = (Math.ceil(count / options.rows)) * elementSize;
+			width = ((Math.ceil(count / options.rows)) * elementSize) - margin;
 			$("div#wiseSlider div#view ul").width(width);
 
 			// Show the right arrow
