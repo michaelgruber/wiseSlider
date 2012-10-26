@@ -16,8 +16,18 @@
 		var width;
 		var margin;
 
-		elementSize += parseInt(elem.css("margin-left")) + parseInt(elem.css("margin-right"));
-		lastSize += parseInt(last.css("margin-left")) + parseInt(elem.css("margin-right"));
+		elementSize += parseInt(elem.css("margin-left"))
+				    + parseInt(elem.css("margin-right"))
+				    + parseInt(elem.css("padding-left"))
+				    + parseInt(elem.css("padding-right"))
+				    + parseInt(elem.css("border-left-width"));
+				    + parseInt(elem.css("border-right-width"));
+		lastSize    += parseInt(last.css("margin-left"))
+				    + parseInt(last.css("margin-right"))
+				    + parseInt(last.css("padding-left"))
+				    + parseInt(last.css("padding-right"))
+				    + parseInt(last.css("border-left-width"));
+				    + parseInt(last.css("border-right-width"));
 
 		// Check if the two selected elements differ in size
 		if ((margin = lastSize - elementSize) != 0) {
