@@ -20,15 +20,15 @@
 				    + parseInt(elem.css("margin-right"))
 				    + parseInt(elem.css("padding-left"))
 				    + parseInt(elem.css("padding-right"))
-				    + parseInt(elem.css("border-left-width"));
+				    + parseInt(elem.css("border-left-width"))
 				    + parseInt(elem.css("border-right-width"));
 		lastSize    += parseInt(last.css("margin-left"))
 				    + parseInt(last.css("margin-right"))
 				    + parseInt(last.css("padding-left"))
 				    + parseInt(last.css("padding-right"))
-				    + parseInt(last.css("border-left-width"));
+				    + parseInt(last.css("border-left-width"))
 				    + parseInt(last.css("border-right-width"));
-
+				    
 		// Check if the two selected elements differ in size
 		if ((margin = lastSize - elementSize) != 0) {
 			elementSize = lastSize;	
@@ -74,7 +74,7 @@
 
 			// Checks whether arrows should be displayed or hidden
 			(left < 0) ? leftArrow.show() : leftArrow.hide();
-			(-left + (elementSize * (options.columns + 1)) <= width) ? rightArrow.show() : rightArrow.hide();
+			(-left + (parseInt(elem.width()) * (options.columns + 1)) < width) ? rightArrow.show() : rightArrow.hide();
 		}
 	};
 

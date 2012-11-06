@@ -1,8 +1,12 @@
+a img {
+	border: 0;
+}
 div#wiseSlider {
 	position: relative;
 }
 div#wiseSlider div#view {
 	overflow: hidden;
+	position: relative;
 }
 div#wiseSlider a.arrow, div#wiseSlider a:visited.arrow{
 	width: 30px;
@@ -35,11 +39,15 @@ div#wiseSlider ul{
 	left:0px;
 }
 div#wiseSlider ul li{
+	margin: 0;
+	padding: 0;
+	border: 0;
 	float: left;
 	margin-left: 10px;
 }
 div#wiseSlider li:first-child {
 	margin-left: 0;
+	padding-left: 0;
 }
 /* Clear Fix */
 .group:before,
