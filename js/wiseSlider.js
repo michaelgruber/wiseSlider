@@ -1,32 +1,36 @@
 (function($) {
 
-	var WiseSlider = function(options){
+	var WiseSlider = function(set, options){
 
 		var slider      = $(this); // The entire wiseSlider object
-		var view		= $("div#wiseSlider div#view"); // The visible area
-		var slide 		= $("div#wiseSlider div#view ul"); // The list of elements
-		var leftArrow   = $("div#wiseSlider a.arrow.left"); // Slide left arrow
-		var rightArrow  = $("div#wiseSlider a.arrow.right"); // Slide right arrow
-		var elem        = $("div#wiseSlider div#view ul li:first"); // A single element
-		var last        = $("div#wiseSlider div#view ul li:last"); // Another (non-first) element
-		var count       = $("div#wiseSlider div#view ul li").length; // The number of elements
+
+		//alert(slider.selector);
+
+		var view		= set.children("div#view"); // The visible area
+		var slide 		= view.children("ul"); // The list of elements
+		var leftArrow   = set.children("a.arrow.left"); // Slide left arrow
+		var rightArrow  = set.children("a.arrow.right"); // Slide right arrow
+		var elem        = slide.children("li:first"); // A single element
+		var last        = slide.children("li:last"); // Another (non-first) element
+		var count       = slide.children("li").length; // The number of elements
 		var elementSize = parseInt(elem.width()); // The width of the first element
 		var lastSize    = parseInt(last.width()); // The width of the first element
 		var inProgress  = false; // Semaphore for slide animation
-		var width;
-		var margin;
+		var width; // Width of the entire set of elements.
+		var margin; // Difference in size between first and last element. Should be padding/margin/border width
 
 		elementSize += parseInt(elem.css("margin-left"))
 				    + parseInt(elem.css("margin-right"))
 				    + parseInt(elem.css("padding-left"))
 				    + parseInt(elem.css("padding-right"))
-				    + parseInt(elem.css("border-left-width"));
+				    + parseInt(elem.css("border-left-width"))
 				    + parseInt(elem.css("border-right-width"));
+
 		lastSize    += parseInt(last.css("margin-left"))
 				    + parseInt(last.css("margin-right"))
 				    + parseInt(last.css("padding-left"))
 				    + parseInt(last.css("padding-right"))
-				    + parseInt(last.css("border-left-width"));
+				    + parseInt(last.css("border-left-width"))
 				    + parseInt(last.css("border-right-width"));
 
 		// Check if the two selected elements differ in size
@@ -39,11 +43,12 @@
 
 		// Resize the slider
 		if (count > (options.columns * options.rows)) {
+
 			width = ((Math.ceil(count / options.rows)) * elementSize) - margin;
-			$("div#wiseSlider div#view ul").width(width);
+			slide.width(width);
 
 			// Show the right arrow
-			$("div#wiseSlider a.arrow.right").show();
+			rightArrow.show();
 		}
 
 		/* Ensures that a slide is not attempted during animation */
@@ -74,7 +79,7 @@
 
 			// Checks whether arrows should be displayed or hidden
 			(left < 0) ? leftArrow.show() : leftArrow.hide();
-			(-left + (elementSize * (options.columns + 1)) <= width) ? rightArrow.show() : rightArrow.hide();
+			(-left + (elem.width() * (options.columns + 1)) < width) ? rightArrow.show() : rightArrow.hide();
 		}
 	};
 
@@ -88,10 +93,10 @@
 		
 		var options = $.extend(defaults, options);
 
-		var wiseSlider = new WiseSlider(options);
+		var wiseSlider = new WiseSlider(this, options);
 
 		/* On arrow click check to see if shouldSlide */
-		$("div#wiseSlider a.arrow").bind('click', function(e){
+		this.children("a.arrow").bind('click', function(e){
 			e.preventDefault();
 			wiseSlider.shouldMove($(this));
 		});
