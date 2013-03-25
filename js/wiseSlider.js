@@ -26,8 +26,8 @@
 
     /* Moves the slider */
     var move = function(arrow) {
-      inProgress     = true; // Lock
-      var left       = options.distance * elementSize; // The new location of the sliders left edge.
+      inProgress = true; // Lock
+      var left   = options.distance * elementSize; // The new location of the sliders left edge.
 
       // Determines whether to slide left or right
       if (arrow.hasClass("right"))
@@ -91,8 +91,8 @@
   $.fn.wiseSlider = function(options) {
 
     var defaults = {
-      columns : 4, // Number of topic columns
-      rows    : 2, // Number of topic rows
+      columns: 4, // Number of topic columns
+      rows: 2, // Number of topic rows
       distance: 1 // The distance in elements the slider should slide
     }
 
